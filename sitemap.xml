@@ -15,4 +15,9 @@
  <url>
   <loc>https://soda3808.github.io/momentum-site/notion-life-os.html</loc>
  </url>
+  <url>
+    <loc>https://soda3808.github.io/momentum-site/kensho-chart-toolkit/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
