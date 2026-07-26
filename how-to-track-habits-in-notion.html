@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Track Habits in Notion (Step-by-Step, Free Plan) — Momentum</title>
+<meta name="description" content="Build a habit tracker in Notion from scratch: two databases, a relation, and a streak formula. Works on the free plan. Includes the parts that break and how to avoid them.">
+<link rel="canonical" href="https://soda3808.github.io/momentum-site/how-to-track-habits-in-notion.html">
+<meta property="og:title" content="How to Track Habits in Notion (Step-by-Step, Free Plan)">
+<meta property="og:description" content="Two databases, one relation, one streak formula. Build a working Notion habit tracker yourself — plus the three places this design usually breaks.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soda3808.github.io/momentum-site/how-to-track-habits-in-notion.html">
+<meta property="og:image" content="https://soda3808.github.io/momentum-site/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Momentum — Notion templates for habits, finance, journal, and a full life OS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Track Habits in Notion (Step-by-Step, Free Plan)">
+<meta name="twitter:description" content="Two databases, one relation, one streak formula. Build a working Notion habit tracker yourself.">
+<meta name="twitter:image" content="https://soda3808.github.io/momentum-site/og-cover.png">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Track Habits in Notion (Step-by-Step, Free Plan)",
+  "description": "Build a habit tracker in Notion using two databases, a relation, and a streak formula. Works on the free plan.",
+  "author": {"@type": "Organization", "name": "Momentum"},
+  "publisher": {"@type": "Organization", "name": "Momentum"},
+  "mainEntityOfPage": "https://soda3808.github.io/momentum-site/how-to-track-habits-in-notion.html"
+}
+</script>
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; background:#0f172a; color:#e2e8f0; line-height:1.65; }
+a { color:#38bdf8; }
+.wrap { max-width:760px; margin:0 auto; padding:48px 20px 80px; }
+h1 { font-size:32px; margin:12px 0; color:#f8fafc; }
+h2 { font-size:20px; margin:28px 0 10px; color:#cbd5e1; }
+h3 { font-size:16px; margin:16px 0 6px; color:#f1f5f9; }
+.lead { color:#94a3b8; font-size:17px; margin-bottom:20px; }
+.card { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px; margin:12px 0; }
+.card h3 { margin-bottom:6px; color:#f1f5f9; }
+.price { color:#86efac; font-weight:600; }
+.cta { display:inline-block; margin-top:8px; padding:10px 16px; background:#0284c7; color:#fff !important; text-decoration:none; border-radius:8px; font-weight:600; }
+.nav a { margin-right:12px; color:#94a3b8; font-size:14px; text-decoration:none; }
+footer { margin-top:40px; color:#64748b; font-size:13px; border-top:1px solid #334155; padding-top:16px; }
+ul, ol { padding-left:1.2rem; margin:10px 0; }
+li { margin:6px 0; color:#cbd5e1; }
+p { margin:10px 0; color:#cbd5e1; }
+.muted { color:#94a3b8; font-size:14px; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
+th, td { border:1px solid #334155; padding:8px 10px; text-align:left; }
+th { background:#1e293b; color:#f1f5f9; }
+code { background:#1e293b; border:1px solid #334155; border-radius:5px; padding:1px 5px; font-size:13px; color:#e2e8f0; }
+</style>
+</head>
+<body><div class="wrap">
+<div class="nav">
+  <a href="index.html">All templates</a>
+  <a href="notion-habit-tracker.html">Habit Tracker</a>
+  <a href="notion-finance-tracker.html">Finance</a>
+  <a href="notion-life-os.html">Life OS</a>
+</div>
+
+<h1>How to Track Habits in Notion</h1>
+<p class="lead">A working habit tracker in Notion needs two databases, not one. This walks through the build on the free plan, then shows the three places the design usually breaks, which is the part most tutorials skip.</p>
+
+<h2>The one decision that determines everything</h2>
+<p>Most people start by making a single database called “Habits” with a checkbox called “Done”. It works for about a day. The moment you tick the box on Tuesday, Monday’s record is gone — you have a to-do list, not a tracker.</p>
+<p>A habit tracker needs <strong>two</strong> databases:</p>
+<ul>
+  <li><strong>Habits</strong> — one row per habit. “Read 20 pages.” “Walk after lunch.” These rows rarely change.</li>
+  <li><strong>Check-ins</strong> — one row per habit <em>per day</em>. This is the log. It grows forever, and that is the point.</li>
+</ul>
+<p>Everything below follows from that split.</p>
+
+<h2>What you need</h2>
+<ul>
+  <li>A Notion account — the free plan is enough; none of this requires a paid feature</li>
+  <li>About 15 minutes for the first build</li>
+  <li>No integrations, no automations, no third-party tools</li>
+</ul>
+
+<h2>Step 1 — Build the Habits database</h2>
+<p>Create a new database (table view) called <strong>Habits</strong>. Properties:</p>
+<ul>
+  <li><code>Name</code> (title) — the habit, written as an action you could do today</li>
+  <li><code>Category</code> (select) — health, work, learning, home. Keeps a long list readable.</li>
+  <li><code>Active</code> (checkbox) — so you can retire a habit without deleting its history</li>
+</ul>
+<p>Add three to five habits. Not fifteen. A tracker you dread opening gets abandoned in the first week.</p>
+
+<h2>Step 2 — Build the Check-ins database</h2>
+<p>Create a second database called <strong>Check-ins</strong>. Properties:</p>
+<ul>
+  <li><code>Date</code> (date) — the day being logged</li>
+  <li><code>Habit</code> (relation → Habits) — links this log entry to the habit it belongs to</li>
+  <li><code>Done</code> (checkbox) — whether you actually did it</li>
+</ul>
+<p>The relation is what makes this a tracker instead of two unrelated lists. When you add the relation property, Notion offers to show it on both sides — turn that on, so each habit row shows its own check-ins.</p>
+
+<h2>Step 3 — Count the streak</h2>
+<p>Notion has no built-in “streak” function. You build it from what the relation gives you. The honest version has two levels:</p>
+<h3>Level 1 — rollups (takes two minutes, good enough for most people)</h3>
+<p>On the <strong>Habits</strong> database, add a rollup property:</p>
+<ul>
+  <li>Relation: <code>Check-ins</code> · Property: <code>Done</code> · Calculate: <strong>Checked</strong></li>
+</ul>
+<p>That gives you a lifetime completion count per habit. Add a second rollup on <code>Date</code> with <strong>Latest date</strong> to see when you last logged it. Two numbers, no formulas, and they already answer “am I actually doing this?”</p>
+<h3>Level 2 — a freshness formula</h3>
+<p>On the Habits database, add a formula that measures days since the last check-in, using the rollup from above:</p>
+<p><code>dateBetween(now(), prop("Last done"), "days")</code></p>
+<p>Zero means today. One means yesterday. Anything climbing past two is the habit quietly dying, and you can sort by this column to see it before you feel it.</p>
+<p>A true consecutive-day streak — counting backwards until it hits a gap — is genuinely awkward in Notion, because formulas cannot loop over previous rows. Every “streak formula” you find online is some approximation of this. The days-since number above is the one that changes behaviour. A consecutive count mostly just looks good.</p>
+
+<h2>Step 4 — Make logging take five seconds</h2>
+<p>If logging is slow, you stop logging, and the tracker becomes a museum. Two views fix this:</p>
+<ul>
+  <li><strong>Today</strong> — on Check-ins, a filtered view where <code>Date</code> is <em>Today</em>. This is the only view you open on a normal day.</li>
+  <li><strong>This week</strong> — Check-ins grouped by <code>Date</code>, filtered to the past week. This is where you see the shape of the week, not just today.</li>
+</ul>
+<p>Set the Today view as the default and put it at the top of your home page, so logging is never more than one click away.</p>
+
+<h2>Where this design breaks</h2>
+<div class="card">
+  <h3>1. You have to create today’s rows manually</h3>
+  <p>The free plan has no recurring-row automation, so each morning you add check-in rows for the habits you care about. Most people work around this by duplicating yesterday’s rows and changing the date. It is the single biggest reason home-built trackers get abandoned in week two, so decide up front whether you will actually do it.</p>
+  <h3>2. The log grows and views get slow</h3>
+  <p>Five habits logged daily is about 1,800 rows a year. Notion handles that fine, but an unfiltered table view of it is unusable. Always filter by date range; never open the raw Check-ins table as your daily surface.</p>
+  <h3>3. Deleting a habit deletes its history</h3>
+  <p>This is why the <code>Active</code> checkbox exists in Step 1. Untick it and filter it out of your views instead of deleting the row. Delete the row and every linked check-in loses its relation, leaving your past data orphaned.</p>
+</div>
+
+<h2>Should you build it or duplicate it?</h2>
+<p>Build it yourself if you want to understand relations and rollups. The 15 minutes is a genuinely good way to learn how Notion databases connect, and you will reuse that knowledge everywhere else in your workspace.</p>
+<p>Duplicate a template if you have already built one, abandoned it, and want the views, formulas, and the daily-row problem already solved. That is what Momentum’s habit tracker is: this structure, pre-wired, with the categories and views set up.</p>
+
+<div class="card">
+  <h3>Momentum Habit Tracker</h3>
+  <div class="price">$9 USD · one-time</div>
+  <p>Both databases, the relation, the rollups, and the Today/This week views already built. Works on the free Notion plan. Duplicate and start logging.</p>
+  <a class="cta" href="https://shivalam.gumroad.com/l/habit-tracker">Get Habit Tracker — $9</a>
+  <p class="muted" style="margin-top:10px">Not ready to pay? The <a href="https://shivalam.gumroad.com/l/momentum-starter">free Momentum Starter Kit</a> covers tasks and goals, so start there and add habits later.</p>
+</div>
+
+<h2>FAQ</h2>
+<div class="card">
+  <h3>Does this work on the Notion free plan?</h3>
+  <p>Yes. Databases, relations, rollups, and formulas are all available on the free personal plan. Nothing in this guide needs a paid tier.</p>
+  <h3>Can I do it with one database instead of two?</h3>
+  <p>Only if you never want history. A single database with a checkbox tells you what is done today and nothing about last month. The two-database split is what turns it into a record.</p>
+  <h3>Can Notion remind me?</h3>
+  <p>Notion can send a reminder on a date property, but it will not nag you daily on the free plan without you setting each one. Most people pair the tracker with a single phone alarm at a fixed time instead, which works better than in-app reminders.</p>
+  <h3>What about the mobile app?</h3>
+  <p>Logging on mobile is fine, and the Today view is what makes it fine. Building the databases is much easier on desktop, so do the setup there once.</p>
+  <h3>Is there a real consecutive-day streak formula?</h3>
+  <p>Not a reliable one. Notion formulas evaluate a single row and cannot walk backwards through previous entries, so any consecutive count is an approximation. Days-since-last-done (Step 3) is the number that actually changes behaviour.</p>
+</div>
+
+<h2>Related</h2>
+<ul>
+  <li><a href="notion-habit-tracker.html">Notion Habit Tracker template</a> — this structure, pre-built, $9</li>
+  <li><a href="notion-life-os.html">Notion Life OS</a> — habits plus tasks and finance in one workspace</li>
+  <li><a href="notion-finance-tracker.html">Notion Finance Tracker</a> — same two-database idea applied to money</li>
+</ul>
+
+<footer>
+  <a href="index.html">Momentum templates</a> · Independent Notion templates · Checkout on Gumroad · Personal license
+</footer>
+</div></body>
+</html>
