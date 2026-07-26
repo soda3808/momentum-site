@@ -3,72 +3,114 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kensho Chart Toolkit — 10 TradingView Indicators (Pine v6)</title>
-  <meta name="description" content="10 TradingView Pine Script v6 chart tools: sessions, MTF RSI, liquidity sweeps, volume profile, ATR trail, order blocks, EMA ribbon, FVG, Fib, kill zones. $49 instant download. Not financial advice." />
+  <title>Kensho Chart Toolkit — 10 TradingView Pine v6 Tools ($49)</title>
+  <meta name="description" content="Stop hunting random free scripts. 10 TradingView Pine Script v6 chart tools in one pack: sessions, kill zones, sweeps, FVG, order blocks, ATR trail, more. $49 lifetime source. Not signals. Not financial advice." />
   <link rel="canonical" href="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/" />
-  <!-- Social cards: brand cover (not a live chart demo). Gumroad cover live as of 2026-07-26. -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/" />
-  <meta property="og:title" content="Kensho Chart Toolkit — 10 TradingView Indicators (Pine v6)" />
-  <meta property="og:description" content="10 Pine v6 chart tools in one pack. $49 lifetime. Chart utilities only — not signals, not financial advice." />
+  <meta property="og:title" content="Kensho Chart Toolkit — 10 TradingView Indicators" />
+  <meta property="og:description" content="10 Pine v6 chart tools · $49 lifetime source download · not a signal service" />
   <meta property="og:image" content="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/cover.png" />
   <meta property="og:image:width" content="1600" />
   <meta property="og:image:height" content="1000" />
-  <meta property="og:image:alt" content="Kensho Chart Toolkit brand cover" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kensho Chart Toolkit — 10 TradingView Indicators" />
-  <meta name="twitter:description" content="10 Pine v6 chart tools · $49 · not financial advice" />
+  <meta name="twitter:description" content="10 Pine v6 tools · $49 lifetime · chart utilities only" />
   <meta name="twitter:image" content="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/cover.png" />
   <style>
-    body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.55;color:#111;background:#fafafa}
-    a.cta{display:inline-block;background:#0b0f14;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;margin:16px 0}
-    .disc{border-left:3px solid #c00;padding-left:12px;color:#444;margin-top:24px;font-size:.95rem}
-    h1{font-size:1.75rem} li{margin:.35rem 0}
-    .hero{width:100%;height:auto;border-radius:10px;margin:12px 0 8px;display:block;background:#eee}
-    .shots{display:grid;grid-template-columns:1fr;gap:12px;margin:16px 0}
-    @media(min-width:560px){.shots{grid-template-columns:1fr 1fr 1fr}}
-    .shots img{width:100%;height:auto;border-radius:8px;background:#eee}
-    .caption{font-size:.85rem;color:#555;margin:0 0 8px}
+    :root { --ink:#0b0f14; --muted:#555; --line:#e6e6e6; --bg:#f7f7f5; --card:#fff; --acc:#0b0f14; }
+    * { box-sizing: border-box; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; max-width: 740px; margin: 0 auto; padding: 28px 16px 64px; line-height: 1.55; color: var(--ink); background: var(--bg); }
+    h1 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 8px; }
+    h2 { font-size: 1.15rem; margin: 28px 0 10px; }
+    p, li { color: #222; }
+    .eyebrow { font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+    .hero { width: 100%; height: auto; border-radius: 12px; margin: 14px 0 8px; display: block; background: #eee; border: 1px solid var(--line); }
+    .caption { font-size: .85rem; color: var(--muted); margin: 0 0 14px; }
+    .price { font-size: 1.15rem; margin: 10px 0 4px; }
+    .cta { display: inline-block; background: var(--acc); color: #fff; padding: 13px 22px; border-radius: 10px; text-decoration: none; font-weight: 600; margin: 12px 12px 12px 0; }
+    .cta.sec { background: #fff; color: var(--ink); border: 1px solid #ccc; }
+    .grid { display: grid; gap: 10px; margin: 12px 0; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+    .card strong { display: block; margin-bottom: 4px; }
+    .shots { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0; }
+    @media (min-width: 560px) { .shots { grid-template-columns: 1fr 1fr 1fr; } }
+    .shots img { width: 100%; height: auto; border-radius: 8px; background: #eee; border: 1px solid var(--line); }
+    .disc { border-left: 3px solid #c00; padding: 4px 0 4px 12px; color: #444; margin-top: 28px; font-size: .95rem; background: #fff; border-radius: 0 8px 8px 0; }
+    ol, ul { padding-left: 1.2rem; }
+    li { margin: .4rem 0; }
+    code { background: #eee; padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+    .who { font-size: .95rem; }
   </style>
 </head>
 <body>
-  <h1>Kensho Chart Toolkit</h1>
-  <img class="hero" src="cover.png" width="1600" height="1000" alt="Kensho Chart Toolkit — brand product cover" />
-  <p class="caption">Brand cover for listing/social cards (not a live TradingView demo screenshot).</p>
-  <p>Ten TradingView <strong>Pine Script v6</strong> chart tools in one pack — session context, multi-timeframe RSI, liquidity sweeps, volume profile, ATR trailing stop, order blocks, EMA ribbon, fair value gaps, auto Fibonacci, and kill zones.</p>
-  <p><strong>$49 USD</strong> · Instant download · Lifetime personal license</p>
-  <a class="cta" href="https://shivalam.gumroad.com/l/dlwuly">Get the pack on Gumroad →</a>
+  <p class="eyebrow">TradingView · Pine Script v6 · Instant download</p>
+  <h1>10 chart tools. One pack. No monthly fee.</h1>
+  <img class="hero" src="cover.png" width="1600" height="1000" alt="Kensho Chart Toolkit brand cover" />
+  <p class="caption">Brand product cover (not a live TradingView demo).</p>
+
+  <p>Most people collect random free scripts — half broken, half mystery. Kensho is a <strong>clean set of 10 Pine v6 source files</strong> you paste yourself: sessions, kill zones, liquidity sweeps, FVG, order blocks, volume profile lite, ATR trail, EMA ribbon, MTF RSI, auto Fib.</p>
+
+  <p class="price"><strong>$49 USD</strong> · lifetime personal license · no subscription</p>
+  <a class="cta" href="https://shivalam.gumroad.com/l/dlwuly">Buy on Gumroad →</a>
+  <a class="cta sec" href="session-hours-map.html">Free kill-zone map</a>
+  <a class="cta sec" href="install-pine-on-tradingview.html">2-min install guide</a>
+
+  <h2>Why this pack</h2>
+  <div class="grid">
+    <div class="card"><strong>Source in your hands</strong>You get <code>.pine</code> files — not a monthly invite-only blacklist you lose when you stop paying.</div>
+    <div class="card"><strong>Built for chart context</strong>Session + kill-zone filters, structure visuals, trail distance — tools you control. Not a “buy now” bot.</div>
+    <div class="card"><strong>Honest about limits</strong>Detection tools finalise on bar close. No FTMO-pass claims. No guaranteed profit. You own risk.</div>
+  </div>
+
   <h2>What's inside</h2>
   <ol>
-    <li>Smart Session Highlighter</li>
-    <li>MTF RSI Dashboard</li>
-    <li>Liquidity Sweep Detector</li>
-    <li>Volume Profile Lite</li>
-    <li>ATR Trailing Stop</li>
-    <li>Order Block Detector</li>
-    <li>EMA Ribbon Trend</li>
-    <li>Fair Value Gap</li>
-    <li>Fibonacci Auto Draw</li>
-    <li>Kill Zone Highlighter</li>
+    <li><strong>Smart Session Highlighter</strong> — Asia / London / New York bands + H/L</li>
+    <li><strong>MTF RSI Dashboard</strong> — multi-timeframe RSI table</li>
+    <li><strong>Liquidity Sweep Detector</strong> — sweep / reclaim markers</li>
+    <li><strong>Volume Profile Lite</strong> — POC / VAH / VAL style histogram</li>
+    <li><strong>ATR Trailing Stop</strong> — volatility trail + panel</li>
+    <li><strong>Order Block Detector</strong> — impulse zones</li>
+    <li><strong>EMA Ribbon Trend</strong> — 8-EMA ribbon + strength</li>
+    <li><strong>Fair Value Gap</strong> — imbalance boxes</li>
+    <li><strong>Fibonacci Auto Draw</strong> — swing-based levels</li>
+    <li><strong>Kill Zone Highlighter</strong> — London / NY kill-zone windows</li>
   </ol>
+
   <h2>Preview samples</h2>
-  <p class="caption">Illustrative chart-style previews from the pack assets (tools look different on your symbols/timeframes).</p>
+  <p class="caption">Illustrative previews — appearance varies by symbol and timeframe.</p>
   <div class="shots">
-    <img src="pilot_01_session.png" alt="Smart Session Highlighter preview" loading="lazy" />
-    <img src="pilot_05_atr.png" alt="ATR Trailing Stop preview" loading="lazy" />
-    <img src="pilot_07_ema.png" alt="EMA Ribbon Trend preview" loading="lazy" />
+    <img src="pilot_01_session.png" alt="Session highlighter preview" loading="lazy" />
+    <img src="pilot_05_atr.png" alt="ATR trail preview" loading="lazy" />
+    <img src="pilot_07_ema.png" alt="EMA ribbon preview" loading="lazy" />
   </div>
-  <p>Install: TradingView → Pine Editor → paste each <code>.pine</code> → Add to chart. Full USER_GUIDE in the zip.
-    <a href="install-pine-on-tradingview.html">Step-by-step install guide →</a></p>
-  <p><strong>Free share:</strong> <a href="session-hours-map.html">London &amp; NY kill zones — session hours map (EST)</a> — bookmarkable chart-context reference, no signup.</p>
-  <h2>Honest notes (before you buy)</h2>
-  <ul>
-    <li><strong>Bar-close design:</strong> detection tools finalise on bar close. On a live bar, markers can appear and disappear until that bar closes — normal TradingView evaluation, not historical rewrite.</li>
-    <li><strong>Not signals:</strong> chart utilities for your own analysis. No entries, no auto-trade, no performance claims.</li>
+
+  <h2>Who it's for</h2>
+  <ul class="who">
+    <li>You already use TradingView and want a tidy toolkit, not another mystery signal.</li>
+    <li>You like <strong>session timing</strong> and basic structure visuals (SMC-style labels as reference).</li>
+    <li>You want <strong>source code</strong> and alerts you configure yourself.</li>
   </ul>
+  <p class="who"><strong>Who it's not for:</strong> anyone looking for “pass FTMO for me” software or guaranteed returns.</p>
+
+  <h2>Install (about 2 minutes each)</h2>
+  <ol>
+    <li>Buy → download zip from Gumroad library</li>
+    <li>TradingView → Pine Editor → new blank indicator</li>
+    <li>Paste <code>.pine</code> → Save → Add to chart</li>
+    <li>Open <code>USER_GUIDE.md</code> for settings &amp; alerts</li>
+  </ol>
+  <p><a href="install-pine-on-tradingview.html">Full install walkthrough →</a></p>
+
+  <h2>Free first</h2>
+  <p>No card needed: <a href="session-hours-map.html">London &amp; NY kill-zone hours (EST)</a> — bookmarkable session map for chart context only.</p>
+
+  <p><a class="cta" href="https://shivalam.gumroad.com/l/dlwuly">Get the 10-tool pack — $49 →</a></p>
+
   <div class="disc">
     <strong>Disclaimer:</strong> Charting / visualization tools only. Not financial advice.
-    No profit guarantee. Not a signal service. Not FTMO pass software.
+    No profit guarantee. Not a signal service. Not FTMO / prop “pass” software.
+    Past chart patterns do not predict future results. You are responsible for risk.
   </div>
 </body>
 </html>
