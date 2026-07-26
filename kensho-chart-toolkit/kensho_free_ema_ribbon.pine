@@ -1,0 +1,42 @@
+// ============================================================================
+// Kensho Free EMA Ribbon Lite (OPEN SOURCE · community)
+// Purpose : Three EMAs with soft fill — trend context only.
+//           Not signals. Not a strategy. Not edge.
+// Best on : H1+
+// ============================================================================
+//@version=6
+// Copyright (c) 2026 Kensho Sound / Steven Lam
+// License: Mozilla Public License 2.0
+// Disclaimer: Charting aid only. NOT financial advice. No profit guarantee.
+//             Not a prop-firm / FTMO pass tool. Past patterns ≠ future results.
+// ============================================================================
+indicator("Kensho Free EMA Ribbon Lite", overlay = true)
+
+grp = "EMAs"
+lenFast = input.int(21, "Fast EMA", minval = 2, group = grp)
+lenMid  = input.int(55, "Mid EMA", minval = 2, group = grp)
+lenSlow = input.int(144, "Slow EMA", minval = 2, group = grp)
+
+grpV = "Colors"
+cFast = input.color(color.new(#26a69a, 0), "Fast", group = grpV)
+cMid  = input.color(color.new(#42a5f5, 0), "Mid", group = grpV)
+cSlow = input.color(color.new(#787b86, 0), "Slow", group = grpV)
+fillBull = input.color(color.new(#26a69a, 88), "Bull fill", group = grpV)
+fillBear = input.color(color.new(#ef5350, 88), "Bear fill", group = grpV)
+
+e1 = ta.ema(close, lenFast)
+e2 = ta.ema(close, lenMid)
+e3 = ta.ema(close, lenSlow)
+
+p1 = plot(e1, "Fast", color = cFast, linewidth = 2)
+p2 = plot(e2, "Mid", color = cMid, linewidth = 1)
+p3 = plot(e3, "Slow", color = cSlow, linewidth = 2)
+
+// Soft stack fill: fast vs mid
+fill(p1, p2, color = e1 >= e2 ? fillBull : fillBear, title = "Fast/Mid fill")
+
+// Tiny tip on last bar
+var label tip = na
+if barstate.islast
+    label.delete(tip)
+    tip := label.new(bar_index, high, "EMA ribbon = context only", style = label.style_label_down, textcolor = color.white, color = color.new(color.gray, 30), size = size.tiny)

@@ -1,0 +1,51 @@
+// ============================================================================
+// Kensho Free ATR Trail Lite (OPEN SOURCE · community)
+// Purpose : Simple ATR trailing stop line for distance context.
+//           Not entry signals. Not a strategy. Not edge.
+// Best on : any TF
+// ============================================================================
+//@version=6
+// Copyright (c) 2026 Kensho Sound / Steven Lam
+// License: Mozilla Public License 2.0
+// Disclaimer: Charting aid only. NOT financial advice. No profit guarantee.
+//             Not a prop-firm / FTMO pass tool. Past patterns ≠ future results.
+// ============================================================================
+indicator("Kensho Free ATR Trail Lite", overlay = true)
+
+grp = "ATR"
+atrLen  = input.int(14, "ATR length", minval = 1, group = grp)
+atrMult = input.float(2.0, "Multiplier", minval = 0.5, maxval = 10.0, step = 0.1, group = grp)
+src     = input.source(close, "Source", group = grp)
+
+grpV = "Colors"
+bullCol = input.color(#26a69a, "Bull trail", group = grpV)
+bearCol = input.color(#ef5350, "Bear trail", group = grpV)
+lineW   = input.int(2, "Width", minval = 1, maxval = 4, group = grpV)
+
+atrVal = ta.atr(atrLen)
+var float stopLevel = na
+var int direction = 1
+
+longStop  = src - atrMult * atrVal
+shortStop = src + atrMult * atrVal
+
+if na(stopLevel)
+    stopLevel := longStop
+    direction := 1
+else if direction == 1
+    stopLevel := math.max(stopLevel, longStop)
+    if src < stopLevel
+        direction := -1
+        stopLevel := shortStop
+else
+    stopLevel := math.min(stopLevel, shortStop)
+    if src > stopLevel
+        direction := 1
+        stopLevel := longStop
+
+plot(stopLevel, "ATR trail", color = direction == 1 ? bullCol : bearCol, linewidth = lineW, style = plot.style_linebr)
+
+var label tip = na
+if barstate.islast
+    label.delete(tip)
+    tip := label.new(bar_index, stopLevel, "Trail = distance context only", style = label.style_label_left, textcolor = color.white, color = color.new(color.gray, 30), size = size.tiny)
