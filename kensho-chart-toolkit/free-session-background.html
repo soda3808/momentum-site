@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free TradingView Session Background (Open Pine) — Kensho</title>
+  <meta name="description" content="Free open-source TradingView Pine Script: Asia / London / New York session background colors. Teaching aid only — not signals. Copy-paste install." />
+  <link rel="canonical" href="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/free-session-background.html" />
+  <meta property="og:title" content="Free TradingView Session Background — Kensho" />
+  <meta property="og:description" content="Open Pine script: session colors only. Not signals. Not financial advice." />
+  <meta property="og:url" content="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/free-session-background.html" />
+  <meta property="og:image" content="https://soda3808.github.io/momentum-site/kensho-chart-toolkit/cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:800px;margin:40px auto;padding:0 16px;line-height:1.55;color:#111;background:#fafafa}
+    h1{font-size:1.6rem}
+    .cta{display:inline-block;background:#0b0f14;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;margin:8px 8px 8px 0;border:0;cursor:pointer;font:inherit}
+    .sec{background:#fff;color:#0b0f14;border:1px solid #ccc}
+    pre{background:#0b0f14;color:#e8e8e8;padding:14px;border-radius:10px;overflow:auto;font-size:12px;line-height:1.4;max-height:420px}
+    .disc{border-left:3px solid #c00;padding-left:12px;color:#444;margin:20px 0}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin:14px 0}
+    .ok{color:#0a0;font-weight:600;display:none}
+  </style>
+</head>
+<body>
+  <p><a href="./">← Kensho Chart Toolkit</a></p>
+  <h1>Free: Session background for TradingView</h1>
+  <p>Open-source Pine v6. Soft colors for <strong>Asia / London / New York</strong> sessions. Context only — no buy/sell arrows, no strategy, no prop-pass claims.</p>
+  <div class="card">
+    <strong>Install (2 min)</strong>
+    <ol>
+      <li>Click <strong>Copy script</strong> below</li>
+      <li>TradingView chart → <strong>Pine Editor</strong> → new blank indicator</li>
+      <li>Paste → Save → <strong>Add to chart</strong></li>
+    </ol>
+    <p>Raw file: <a href="kensho_free_session_bg.pine">kensho_free_session_bg.pine</a></p>
+  </div>
+  <button class="cta" id="copyBtn" type="button">Copy script</button>
+  <a class="cta sec" href="session-hours-map.html">Free hour map</a>
+  <a class="cta sec" href="https://shivalam.gumroad.com/l/dlwuly?utm_source=seo&utm_medium=free_session_page&utm_campaign=kensho">Optional $49 pack</a>
+  <span class="ok" id="ok">Copied.</span>
+  <pre id="code">// ============================================================================
+// Kensho Free Session Background (OPEN SOURCE · community)
+// Purpose : Light background for Asia / London / New York sessions.
+//           Teaching aid only — not signals, not a strategy, not edge.
+// Best on : M5 – H1
+// ============================================================================
+//@version=6
+// Copyright (c) 2026 Kensho Sound / Steven Lam
+// License: Mozilla Public License 2.0 (same family as many public Pine scripts)
+// Disclaimer: Charting aid only. NOT financial advice. No profit guarantee.
+//             Not a prop-firm / FTMO pass tool. Past patterns ≠ future results.
+// ============================================================================
+indicator(&quot;Kensho Free Session Background&quot;, overlay = true, max_boxes_count = 500)
+
+// ── Defaults use exchange/chart timezone via input.session ───────────────────
+grp_a = &quot;Asia&quot;
+showA = input.bool(true, &quot;Show Asia&quot;, group = grp_a)
+sessA = input.session(&quot;2000-0400&quot;, &quot;Asia session&quot;, group = grp_a)
+colA  = input.color(color.new(#42a5f5, 88), &quot;Asia color&quot;, group = grp_a)
+
+grp_l = &quot;London&quot;
+showL = input.bool(true, &quot;Show London&quot;, group = grp_l)
+sessL = input.session(&quot;0300-1130&quot;, &quot;London session&quot;, group = grp_l)
+colL  = input.color(color.new(#ab47bc, 88), &quot;London color&quot;, group = grp_l)
+
+grp_n = &quot;New York&quot;
+showN = input.bool(true, &quot;Show New York&quot;, group = grp_n)
+sessN = input.session(&quot;0830-1600&quot;, &quot;New York session&quot;, group = grp_n)
+colN  = input.color(color.new(#ef5350, 88), &quot;NY color&quot;, group = grp_n)
+
+grp_x = &quot;Display&quot;
+transp = input.int(88, &quot;Background transparency&quot;, minval = 70, maxval = 95, group = grp_x)
+
+inSess(s) =&gt;
+    not na(time(timeframe.period, s))
+
+// Soft stack: if sessions overlap, last bgcolor wins — fine for teaching
+bgcolor(showA and inSess(sessA) ? color.new(colA, transp) : na, title = &quot;Asia&quot;)
+bgcolor(showL and inSess(sessL) ? color.new(colL, transp) : na, title = &quot;London&quot;)
+bgcolor(showN and inSess(sessN) ? color.new(colN, transp) : na, title = &quot;New York&quot;)
+
+// Tiny label once per day so people know what they installed
+var label tip = na
+if barstate.islast and timeframe.isintraday
+    label.delete(tip)
+    tip := label.new(bar_index, high, &quot;Sessions = context only&quot;, style = label.style_label_down, textcolor = color.white, color = color.new(color.gray, 30), size = size.tiny)
+</pre>
+  <div class="disc">
+    Charting aid only. Not financial advice. No profit guarantee. Not a signal service or FTMO/prop system.
+    Optional paid pack = more source tools in a zip; same honesty rules.
+  </div>
+  <script>
+    const code = document.getElementById('code').innerText;
+    document.getElementById('copyBtn').onclick = async () => {
+      await navigator.clipboard.writeText(code);
+      document.getElementById('ok').style.display = 'inline';
+    };
+  </script>
+</body>
+</html>

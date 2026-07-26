@@ -30,4 +30,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
+  <url>
+    <loc>https://soda3808.github.io/momentum-site/kensho-chart-toolkit/free-session-background.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
